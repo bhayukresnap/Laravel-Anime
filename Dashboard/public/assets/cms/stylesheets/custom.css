@@ -1,0 +1,16 @@
+.image_placeholder{
+	height: 50vh;
+	background-color: #efefef;
+	cursor: pointer;
+}
+
+#preloading{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: rgb(255,255,255,0.7);
+	top: 0;
+	left: 0;
+	display: none;
+}
