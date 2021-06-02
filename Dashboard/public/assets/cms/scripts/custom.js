@@ -74,6 +74,31 @@ var setVideo = function(id, type, options) {
 };
 
 
+$('form#login').submit(function(e){
+	e.preventDefault();
+	$loading.attr('style', 'display:block;');
+	$.ajax({
+		async:true,
+		url: $(this).attr('action'),
+		type: 'post',
+		data: new FormData(this),
+		dataType:'JSON',
+		contentType: false,
+		cache: false,
+		processData: false,
+		error: function(error){
+			notify(error.responseJSON.message, error.status);
+			notify(error.statusText, error.status);
+		},
+		success: function(success){
+			success.status == 200 ? window.location.href = '/cms/login' : success.message.map( data => notify(data, success.status) );
+		},
+	})
+	.always(function(data){
+		$loading.attr('style', 'display:none;');
+	})
+});
+
 $('form#add').submit(function(e){
 	e.preventDefault();
 	$loading.attr('style', 'display:block;');

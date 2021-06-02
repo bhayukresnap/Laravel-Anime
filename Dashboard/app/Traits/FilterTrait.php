@@ -11,7 +11,6 @@ trait FilterTrait{
             $model->where('name', 'LIKE', '%'.$request->search.'%')->orWhereHas($whereHas, function($q) use ($request){
             	return $q->where('slug', 'LIKE', '%'.$request->search.'%')->orWhere('name', 'LIKE', '%'.$request->search.'%');
             });
-            
         }
 
         if(isset($request->filter) && !empty($request->filter)){

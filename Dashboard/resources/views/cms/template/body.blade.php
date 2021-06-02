@@ -195,7 +195,7 @@
                 </div>
               </div>
             </li>
-            <li class="nav-item"><a class="nav-link" href="#"><i class="icon ion-android-exit"></i></a></li>
+            <li class="nav-item"><a class="nav-link" href="{{route('cms.logout')}}"><i class="icon ion-android-exit"></i></a></li>
             <li class="nav-item"><a class="nav-link close-mobile-nav js-close-mobile-nav" href="#"><i class="icon ion-close"></i></a></li>
             <!-- END TOP RIGHT MENU-->
           </ul>
