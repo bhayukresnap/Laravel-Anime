@@ -9,7 +9,7 @@ use Auth;
 class LoginController extends Controller
 {
     public function view(){
-        return Auth::check() ? redirect()->route('cms.home') : view('cms.login');
+        return Auth::check() ? redirect(route('cms.home')) : view('cms.login');
     }
 
     public function authenticate(Request $request){

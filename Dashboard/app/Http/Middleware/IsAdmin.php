@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Auth;
 
 class IsAdmin
 {
@@ -16,10 +17,9 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->user()->role == 1){
+        if(Auth::user()->role == 1){
             return $next($request);
         }
-        auth()->logout();
-        return redirect(route('cms.login'));
+        return Auth::logout() ? null : redirect()->back();
     }
 }

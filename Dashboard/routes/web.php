@@ -12,17 +12,10 @@ use App\Traits\VideoTrait;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::prefix('cms/gallery')->group(function(){
-	\UniSharp\LaravelFilemanager\Lfm::routes();
-});
-
 Route::prefix('cms')->name('cms.')->group(function(){
 	Route::get('login', [App\Http\Controllers\cms\Auth\LoginController::class, 'view'])->name('login');
 	Route::post('login', [App\Http\Controllers\cms\Auth\LoginController::class, 'authenticate'])->name('login.post');
 	Route::get('logout', [App\Http\Controllers\cms\Auth\LoginController::class, 'logout'])->name('logout');
-
-
 	Route::middleware(['auth', 'IsAdmin'])->group(function(){
 		Route::get('/', function(){return view('cms.index');})->name('home');
 		Route::resource('animes', \App\Http\Controllers\cms\AnimeController::class);
@@ -35,6 +28,9 @@ Route::prefix('cms')->name('cms.')->group(function(){
 		Route::resource('seasons', \App\Http\Controllers\cms\SeasonController::class);
 		Route::resource('producers', \App\Http\Controllers\cms\ProducerController::class);
 		Route::resource('genres', \App\Http\Controllers\cms\GenreController::class);
+		Route::prefix('gallery')->group(function(){
+			\UniSharp\LaravelFilemanager\Lfm::routes();
+		});
 		Route::prefix('search')->name('search.')->group(function(){
 			Route::get('person', [\App\Http\Controllers\cms\SearchController::class, 'getPerson'])->name('person');
 			Route::get('studio', [\App\Http\Controllers\cms\SearchController::class, 'getStudio'])->name('studio');
@@ -47,5 +43,4 @@ Route::prefix('cms')->name('cms.')->group(function(){
 			Route::get('anime', [\App\Http\Controllers\cms\SearchController::class, 'getAnime'])->name('anime');
 		});
 	});
-
 });

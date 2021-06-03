@@ -76,7 +76,7 @@
             </a>
           </li> --}}
           <li class="nav-item">
-            <a class="nav-link" href="{{route('unisharp.lfm.show')}}">
+            <a class="nav-link" href="{{route('cms.unisharp.lfm.show')}}">
               <i class="icon ion-image"></i>
               <div class="menu-block-label">Gallery</div>
             </a>
