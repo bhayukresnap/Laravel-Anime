@@ -12,7 +12,7 @@ class Character extends Model
     protected $table = 'characters';
     protected $primaryKey = 'id';
     protected $fillable = [
-    	'name', 'birthday', 'description', 'photo', 'thumbnail', 'slug', 'voice_actor_id'
+    	'name', 'birthday', 'description', 'photo', 'thumbnail', 'voice_actor_id'
     ];
 
     public function meta(){

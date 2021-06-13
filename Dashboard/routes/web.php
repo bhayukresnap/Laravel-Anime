@@ -12,6 +12,21 @@ use App\Traits\VideoTrait;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/', [\App\Http\Controllers\main\HomeController::class, 'home'])->name('home');
+Route::get('/animes', [App\Http\Controllers\main\AnimeController::class, 'animes'])->name('animes');
+Route::get('/animes/{slug}', [App\Http\Controllers\main\AnimeController::class, 'detail'])->name('animes.detail');
+Route::get('/animes/{slug}/{episode}', [App\Http\Controllers\main\AnimeController::class, 'episode'])->name('animes.episode');
+Route::get('/genres', [App\Http\Controllers\main\GenreController::class, 'genres'])->name('genres');
+Route::get('/genres/{slug}', [App\Http\Controllers\main\GenreController::class, 'detail'])->name('genres.detail');
+
+
+Route::get('login', [App\Http\Controllers\main\Auth\LoginController::class, 'view'])->name('login');
+Route::post('login', [App\Http\Controllers\main\Auth\LoginController::class, 'authenticate'])->name('login.post');
+Route::get('logout', [App\Http\Controllers\main\Auth\LoginController::class, 'logout'])->name('logout');
+Route::get('register', [App\Http\Controllers\main\Auth\RegisterController::class, 'view'])->name('register');
+Route::post('register', [App\Http\Controllers\main\Auth\RegisterController::class, 'authenticate'])->name('register.post');
+
 Route::prefix('cms')->name('cms.')->group(function(){
 	Route::get('login', [App\Http\Controllers\cms\Auth\LoginController::class, 'view'])->name('login');
 	Route::post('login', [App\Http\Controllers\cms\Auth\LoginController::class, 'authenticate'])->name('login.post');

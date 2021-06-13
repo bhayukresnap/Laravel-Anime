@@ -120,7 +120,7 @@ $('form#add').submit(function(e){
 			if(success.status == 200){
 				$('input, #summernote').val('');
 				$('#holder').addClass('image_placeholder').html('');
-				$('select').select2('val', '');
+				$('select') ? $('select').select2('val', '') : null;
 			}
 		},
 	})

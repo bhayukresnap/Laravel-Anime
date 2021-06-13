@@ -42,7 +42,7 @@ class CharacterController extends Controller
         $validate = Validator::make($request->all(), [
             'photo' => 'required|string',
             'name' => 'required|string|max:255',
-            'slug' => 'required|string|unique:character',
+            'slug' => 'required|string|unique:metas',
             'birthday' => 'nullable|string|date',
             'voice_actor'=> 'nullable|integer',
             'description' => 'nullable|string',
@@ -93,7 +93,7 @@ class CharacterController extends Controller
      */
     public function edit(Character $character)
     {
-        $person = \App\Models\People::where('id', $character->voice_actor_id)->first();
+        $person = \App\Models\Person::where('id', $character->voice_actor_id)->first();
         return view('cms.characters.edit', ['character' => $character, 'voice_actor' => $person]);
     }
 
@@ -109,7 +109,7 @@ class CharacterController extends Controller
         $validate = Validator::make($request->all(), [
             'photo' => 'required|string',
             'name' => 'required|string|max:255',
-            'slug' => ['required', 'string', Rule::unique('character')->ignore($character->id)],
+            'slug' => ['required', 'string', Rule::unique('characters')->ignore($character->meta->id)],
             'birthday' => 'nullable|string|date',
             'voice_actor'=> 'nullable|integer',
             'description' => 'nullable|string',

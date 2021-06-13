@@ -76,7 +76,7 @@ class AnimeController extends Controller
             $anime->studio_id = $request->studio;
             $anime->source_id = $request->source;
             $anime->season_id = $request->season;
-
+            $anime->description = $request->description;
             return $anime->save()
             && $this->addMeta($anime, $request)
             && $anime->genres()->sync($request->genres)
@@ -123,6 +123,7 @@ class AnimeController extends Controller
      */
     public function update(Request $request, Anime $anime)
     {
+
         $validate = Validator::make($request->all(), [
             'photo' => 'required|string',
             'name' => ['required', 'string', Rule::unique('animes')->ignore($anime->id)],
@@ -160,9 +161,9 @@ class AnimeController extends Controller
             $anime->studio_id = $request->studio;
             $anime->source_id = $request->source;
             $anime->season_id = $request->season;
-
+            $anime->description = $request->description;
             return $anime->save()
-            && $this->addMeta($anime, $request)
+            && $this->updateMeta($anime, $request)
             && $anime->genres()->sync($request->genres)
             && $anime->producers()->sync($request->producers)
             && $anime->licensors()->sync($request->licensors)

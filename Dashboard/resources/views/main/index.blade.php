@@ -1,47 +1,87 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-	<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="robots" content="noindex">
-    <meta name="googlebot" content="noindex">
-    <meta name="googlebot-news" content="nosnippet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,700italic,900,900italic">
-    <link rel="stylesheet" href="{{asset('cms/stylesheets/theme-libs-plugins.css')}}">
-    <link rel="stylesheet" href="{{asset('cms/stylesheets/skin.css')}}">
-    <link rel="stylesheet" href="{{asset('cms/stylesheets/demo.css')}}">
-    <link rel="stylesheet" href="{{asset('cms/stylesheets/custom.css')}}">
-    <script src="{{asset('cms/scripts/lib/modernizr-custom.js')}}"></script>
-    <script src="{{asset('cms/scripts/lib/respond.js')}}"></script>
-    <script src="{{asset('cms/scripts/lib/jquery-1.11.3.min.js')}}"></script>
-    <script src="{{asset('cms/scripts/lib/jquery-ui.js')}}"></script>
-    <script src="{{asset('cms/scripts/lib/tether.min.js')}}"></script>
-    <script src="{{asset('cms/scripts/theme/theme-plugins.js')}}"></script>
-    <script src="{{asset('cms/ckeditor/ckeditor.js')}}"></script>
-    <script src="{{asset('cms/scripts/theme/main.js')}}"></script>
-    <script src="{{asset('cms/scripts/demo/demo-skin.js')}}"></script>
-    <script src="{{asset('cms/scripts/demo/bar-chart-menublock.js')}}"></script>
-    <script src="{{asset('vendor/laravel-filemanager/js/stand-alone-button.js')}}"></script>
-    <style type="text/css">
-    	#preloading{
-    		background-color: black;
-    	}
-    </style>
-</head>
-<body>
-	<!-- WEB PERLOAD-->
-    <div id="preloading">
-      <ul class="loading">
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
-    </div>
+@extends('main.template.body')
 
-    qweqweqwe
-</body>
-</html>
+@section('body')
+<!-- Hero Section Begin -->
+<section class="hero">
+    <div class="container">
+        <div class="hero__slider owl-carousel">
+            <div class="hero__items set-bg" data-setbg="/assets/main/img/hero/hero-1.jpg">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="hero__text">
+                            <div class="label">Adventure</div>
+                            <h2>Bhayu ganteng</h2>
+                            <p>After 30 days of travel across the world...</p>
+                            <a href="#"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero__items set-bg" data-setbg="/assets/main/img/hero/hero-1.jpg">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="hero__text">
+                            <div class="label">Adventure</div>
+                            <h2>Fate / Stay Night: Unlimited Blade Works</h2>
+                            <p>After 30 days of travel across the world...</p>
+                            <a href="#"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero__items set-bg" data-setbg="/assets/main/img/hero/hero-1.jpg">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="hero__text">
+                            <div class="label">Adventure</div>
+                            <h2>Fate / Stay Night: Unlimited Blade Works</h2>
+                            <p>After 30 days of travel across the world...</p>
+                            <a href="#"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Hero Section End -->
+
+<!-- Product Section Begin -->
+<section class="product spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="trending__product">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-8 col-sm-8">
+                            <div class="section-title">
+                                <h4>Recently Added Shows</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        @foreach($recently as $episode)
+                            <div class="col-lg-3 col-md-6 col-6">
+                                <div class="product__item">
+                                    <a href="{{route('animes.episode', ['slug' => $episode->anime->meta->slug, 'episode' => $episode->slug])}}">
+                                        <div class="product__item__pic set-bg" data-setbg="{{$episode->anime->photo}}">
+                                            <div class="comment"><i class="fa fa-comments"></i> {{$episode->anime->reviews->count()}}</div>
+                                        </div>
+                                        <div class="product__item__text">
+                                            <ul>
+                                                <li>Active</li>
+                                                <li>Movie</li>
+                                            </ul>
+                                            <h5><a href="#">{{$episode->anime->name}} - {{$episode->name}}</a></h5>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                    {{$recently->appends(request()->input())->onEachSide(3)->links('vendor.pagination.anime') }}
+                </div>
+            </div>
+        </div>
+    </section>
+    @endsection

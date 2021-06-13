@@ -72,7 +72,7 @@
             <div class="col-xs-12 col-md-6">
               <div class="form-group">
                 <label>Synonyms</label>
-                <input type="text" name="sysnonyms" class="form-control" value="{{$anime->synonyms}}">
+                <input type="text" name="synonyms" class="form-control" value="{{$anime->synonyms}}">
               </div>
             </div>
 
@@ -87,7 +87,9 @@
               <div class="form-group">
                 <label>Status</label>
                 <select class="form-control" name="status" data-plugin="select2">
-                  <option disabled selected>----</option>
+                  @if($anime->status)
+                    <option value="{{$anime->status}}" selected>{{$anime->status}}</option>
+                  @endif
                   <option value="Airing">Airing</option>
                   <option value="On-going">On-going</option>
                 </select>
@@ -98,7 +100,9 @@
               <div class="form-group">
                 <label>Type</label>
                 <select class="form-control" name="type" data-plugin="select2">
-                  <option disabled selected>----</option>
+                  @if($anime->type)
+                    <option value="{{$anime->type}}" selected>{{$anime->type}}</option>
+                  @endif
                   <option value="TV">TV</option>
                   <option value="Movie">Movie</option>
                   <option class="OVA">OVA</option>
@@ -109,7 +113,7 @@
             <div class="col-xs-12 col-md-6">
               <label>Aired from</label>
               <div class="input-group date">
-                <input type="text" class="form-control datepicker" name="aired_from" value="" data-plugin="daterangepicker">
+                <input type="text" class="form-control datepicker" name="aired_from" value="{{\Carbon\Carbon::parse($anime->aired_from)->format('m/d/Y')}}" data-plugin="daterangepicker">
                 <div class="input-group-addon">
                   <span class="glyphicon glyphicon-th"></span>
                 </div>
@@ -119,7 +123,7 @@
             <div class="col-xs-12 col-md-6">
               <label>Aired to</label>
               <div class="input-group date ">
-                <input type="text" class="form-control datepicker" name="aired_to" value="" data-plugin="daterangepicker">
+                <input type="text" class="form-control datepicker" name="aired_to" value="{{\Carbon\Carbon::parse($anime->aired_to)->format('m/d/Y')}}" data-plugin="daterangepicker">
                 <div class="input-group-addon">
                   <span class="glyphicon glyphicon-th"></span>
                 </div>

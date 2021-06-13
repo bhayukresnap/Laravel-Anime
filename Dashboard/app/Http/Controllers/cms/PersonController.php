@@ -11,10 +11,6 @@ use Carbon\Carbon;
 class PersonController extends Controller
 {
 
-    public function __construct(){
-        $this->table = new Person;
-    }
-
     public function index(Request $request)
     {   
         return view('cms.people.index', ['people' => $this->filter(new Person, $request)]);
@@ -109,7 +105,7 @@ class PersonController extends Controller
         $validate = Validator::make($request->all(), [
                 'photo' => 'required|string',
                 'name' => 'required|string|max:255',
-                'slug' => ['required', 'string', Rule::unique('metas')->ignore($person->id)],
+                'slug' => ['required', 'string', Rule::unique('metas')->ignore($person->meta->id)],
                 'given_name' => 'nullable|string|max:255',
                 'family_name' => 'nullable|string|max:255',
                 'birthday' => 'nullable|string|date',

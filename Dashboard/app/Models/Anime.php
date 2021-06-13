@@ -38,7 +38,11 @@ class Anime extends Model
     public function likes(){
         return $this->hasMany(Like::class);   
     }
-    
+        
+    public function episodes(){
+        return $this->hasMany(Episode::class);
+    }
+
     public function producers(){
         return $this->belongsToMany(Producer::class, 'anime_producer');
     }

@@ -62,13 +62,6 @@
 
             <div class="col-xs-12 col-md-4">
               <div class="form-group">
-                <label>Slug</label>
-                <input type="text" name="slug" class="form-control" value="{{$character->slug}}">
-              </div>
-            </div>
-
-            <div class="col-xs-12 col-md-4">
-              <div class="form-group">
                 <label>Status</label>
                 <select class="form-control" name="status" data-plugin="select2">
                   <option disabled selected>----</option>
@@ -107,6 +100,9 @@
                 </textarea>
               </div>
             </div>
+
+
+            @include('cms.template.meta', ['meta' => $character->meta])
 
           </div>
         </div>
